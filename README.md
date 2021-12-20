@@ -1,2 +1,2 @@
 # Ising model simulation by Metropolis method
-Run by `cargo run`.
+Run by `cargo run --release`.
