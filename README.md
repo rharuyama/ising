@@ -1,3 +1,5 @@
 # Ising model simulation by Metropolis method
-![Simulation](simulation.png)
+![Undirected ising model](ising.png)
+![Directed wind from down left corner model](wind.png)
+
 Run by `cargo run --release`.
