@@ -125,6 +125,7 @@ pub fn d_hamiltonian(model: &Model, n: usize) -> i32 {
     d_ham
 }
 
+// energy
 fn interaction(xi: u8, xj: u8) -> i32 {
     if xi == 0 && xj == 0 {
 	0
