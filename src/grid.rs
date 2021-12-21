@@ -1,7 +1,7 @@
 use ising::model::Model;
 use nannou::prelude::*;
 
-pub fn grid(draw: &Draw, _t:f32, model: &Model) {
+pub fn grid(draw: &Draw, model: &Model) {
     for i in 0..100 {
 	for j in 0..100 {
 	    draw.rect()

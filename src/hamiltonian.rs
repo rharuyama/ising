@@ -1,7 +1,6 @@
 use ising::model::Model;
-use nannou::prelude::*;
 
-pub fn hamiltonian(model: &Model) -> i32 {
+pub fn _hamiltonian(model: &Model) -> i32 {
     let mut ham: i32 = 0;
     for n in 0..10000 {
 	if n % 100 == 99 && n / 100 == 99 {
@@ -42,32 +41,32 @@ pub fn d_hamiltonian(model: &Model, n: usize) -> i32 {
 	);
     } else if n == 99 { // down right corner
 	d_ham += - interaction(
-	    model.state[n],
-	    model.state[n + 100] // upper edge
+	    model.state[n + 100],
+	    model.state[n] // upper edge
 	) - interaction(
 	    model.state[n],
 	    model.state[n - 1] // left edge
 	);
     } else if n == 0 {
 	d_ham += - interaction(
-	    model.state[n],
-	    model.state[n + 100] // upper edge
+	    model.state[n + 100],
+	    model.state[n] // upper edge
 	) - interaction(
-	    model.state[n],
-	    model.state[n + 1] // right edge
+	    model.state[n + 1],
+	    model.state[n] // right edge
 	);
     } else if n == 9900 { // upper left corner
 	d_ham += - interaction(
 	    model.state[n],
 	    model.state[n - 100] // down edge
 	) - interaction(
-	    model.state[n],
-	    model.state[n + 1] // right edge
+	    model.state[n + 1],
+	    model.state[n] // right edge
 	);
     } else if n % 100 == 99 { // right side
 	d_ham += - interaction(
-	    model.state[n],
-	    model.state[n + 100] // upper edge
+	    model.state[n + 100],
+	    model.state[n] // upper edge
 	) - interaction(
 	    model.state[n],
 	    model.state[n - 1] // left edge
@@ -77,22 +76,22 @@ pub fn d_hamiltonian(model: &Model, n: usize) -> i32 {
 	);
     } else if n / 100 == 99 { // upper side
 	d_ham += - interaction(
-	    model.state[n],
-	    model.state[n + 1] // left edge
+	    model.state[n + 1],
+	    model.state[n] // left edge
 	) - interaction(
 	    model.state[n],
 	    model.state[n - 100] // down edge
 	) - interaction(
-	    model.state[n],
-	    model.state[n + 1] // right edge
+	    model.state[n + 1],
+	    model.state[n] // right edge
 	);
     } else if n % 100 == 0 { // left side
 	d_ham += - interaction(
-	    model.state[n],
-	    model.state[n + 100] // upper edge
+	    model.state[n + 100],
+	    model.state[n] // upper edge
 	) - interaction(
-	    model.state[n],
-	    model.state[n + 1] // right edge
+	    model.state[n + 1],
+	    model.state[n] // right edge
 	) - interaction(
 	    model.state[n],
 	    model.state[n - 100] // down edge
@@ -102,19 +101,19 @@ pub fn d_hamiltonian(model: &Model, n: usize) -> i32 {
 	    model.state[n],
 	    model.state[n - 1] // left edge
 	) - interaction(
-	    model.state[n],
-	    model.state[n + 100] // upper edge
+	    model.state[n + 100],
+	    model.state[n] // upper edge
 	) - interaction(
-	    model.state[n],
-	    model.state[n + 1] // right edge
+	    model.state[n + 1],
+	    model.state[n] // right edge
 	);
     } else {
 	d_ham += - interaction(
-	    model.state[n],
-	    model.state[n + 100] // upper edge
+	    model.state[n + 100],
+	    model.state[n] // upper edge
 	) - interaction(
-	    model.state[n],
-	    model.state[n + 1] // right edge
+	    model.state[n + 1],
+	    model.state[n] // right edge
 	) - interaction(
 	    model.state[n],
 	    model.state[n - 1] // left edge
