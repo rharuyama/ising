@@ -38,15 +38,15 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 	let n = rng.gen_range(0..10000);
 	let d_ham = d_hamiltonian(model, n);
 	let p: f64 = rng.gen();
-	let tempreture: f64 = 20000.0;
+	let tempreture: f64 = 20.0;
 
-	let energy_average = -1;
+	let energy_average = -2;
 	let e = d_ham - energy_average; 
 	if e <= 0 { // then flip
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else if 0 < e
 	    && (- e as f64 * (1.0 / tempreture)).exp() <= p {
-	    // model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
+	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else {
 	    
 	}
