@@ -131,7 +131,7 @@ fn interaction(xi: u8, xj: u8) -> i32 {
     } else if xi == 0 && xj == 1 {
 	1
     } else if xi == 1 && xj == 0 {
-	1
+	0
     } else {
 	0
     }

@@ -17,13 +17,22 @@ fn main() {
 fn model(_app: &App) -> Model {
     let mut rng = rand::thread_rng();
     Model {
-	state: (0..10000).map(|_| rng.gen_range(0..2)).collect(),
+	state: (0..10000).map(|n| {
+	    let i = n % 100;
+	    let j = n / 100;
+	    if 40 <= i && i < 60 && 40 <= j && j < 60 {
+		rng.gen_range(0..2)
+	    } else {
+		// 0
+		rng.gen_range(0..2)
+	    }
+	}).collect(),
     }
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
     // update view per 50 times loop
-    for _t in 0..50 {
+    for _t in 0..500 {
 	let mut rng = rand::thread_rng();
 	let n = rng.gen_range(0..10000);
 	let d_ham = d_hamiltonian(model, n);
