@@ -20,7 +20,7 @@ fn model(_app: &App) -> Model {
 	state: (0..10000).map(|n| {
 	    let i = n % 100;
 	    let j = n / 100;
-	    if 40 <= i && i < 60 && 40 <= j && j < 60 {
+	    if 48 <= i && i < 52 && 48 <= j && j < 52 {
 		rng.gen_range(0..2)
 	    } else {
 		// 0
@@ -38,16 +38,17 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 	let n = rng.gen_range(0..10000);
 	let d_ham = d_hamiltonian(model, n);
 	let p: f64 = rng.gen();
+	let tempreture: f64 = 20000.0;
 
 	let energy_average = -1;
-	if d_ham <= energy_average { // then flip
+	let e = d_ham - energy_average; 
+	if e <= 0 { // then flip
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
-	} else if energy_average < d_ham && (-d_ham as f64).exp() <= p {
-	    println!("botz: {}", (-d_ham as f64).exp());
-	    println!("p: {}", p);
-	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
+	} else if 0 < e
+	    && (- e as f64 * (1.0 / tempreture)).exp() <= p {
+	    // model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else {
-	    //	println!("else");
+	    
 	}
     }
 }
