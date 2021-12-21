@@ -2,7 +2,7 @@
 
 Run by `cargo run --release`.
 
-## Undirected ising model
+## (Undirected) ising model
 ![Undirected ising model](ising.png)  
 | $x_i$ | $x_j$ | energy |
 | --- | --- | --- |
