@@ -43,14 +43,7 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 
 fn view(app: &App, model: &Model, frame: Frame) {
     let draw: Draw = app.draw();
-    draw.background().color(WHITE);
-    for i in 0..100 {
-	for j in 0..100 {
-	    if i < 75 && j < 25 {
-		model.state[j + i * 100] = 1;
-	    }
-	}
-    }
+    draw.background().color(WHITE);   
 
     grid::grid(&draw, &model);
     
