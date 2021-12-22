@@ -28,8 +28,8 @@ fn model(_app: &App) -> Model {
 	    }
 	}).collect(),
 	ie: Energy::new(0, 2, 3, 0),
-	tempreture: 200000.0,
-	update_speed: 500,
+	tempreture: 1.0,
+	update_speed: 5000,
     }
 }
 
@@ -44,7 +44,7 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 	if e <= 0 { // then flip
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else if 0 < e
-	    && (- e as f64 * (1.0 / model.tempreture)).exp() <= p { // noise
+	    && p <= (- e as f64 * (1.0 / model.tempreture)).exp() { // noise
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else {
 	    
