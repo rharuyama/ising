@@ -27,8 +27,8 @@ fn model(_app: &App) -> Model {
 		rng.gen_range(0..2)
 	    }
 	}).collect(),
-	ie: Energy::new(0, 2, 3, 0),
-	tempreture: 1.0,
+	ie: Energy::new(0, 1, 1, 0),
+	tempreture: 0.3, // 0.2 ~ 0.5, for example
 	update_speed: 5000,
     }
 }
