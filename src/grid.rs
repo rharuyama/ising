@@ -1,4 +1,4 @@
-use ising::model::Model;
+use ising::Model;
 use nannou::prelude::*;
 
 pub fn grid(draw: &Draw, model: &Model) {

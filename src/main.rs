@@ -1,7 +1,8 @@
 mod grid;
 mod hamiltonian;
 use crate::hamiltonian::d_hamiltonian;
-use ising::model::Model;
+use ising::Model;
+use ising::Energy;
 use nannou::prelude::*;
 use rand::Rng;
 use std::f64;
@@ -27,25 +28,25 @@ fn model(_app: &App) -> Model {
 		rng.gen_range(0..2)
 	    }
 	}).collect(),
+	ie: Energy::new(0, 1, 1, 0),
+	tempreture: 20000.0,
+	speed: 50000,
     }
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    // update view per n times loop
-    let n = 500;
-    for _t in 0..n {
+    // update view per v times loop (update speed)
+    for _a in 0..model.speed {
 	let mut rng = rand::thread_rng();
 	let n = rng.gen_range(0..10000);
 	let d_ham = d_hamiltonian(model, n);
 	let p: f64 = rng.gen();
-	let tempreture: f64 = 20.0;
-
-	let energy_average = -2;
-	let e = d_ham - energy_average; 
+	let e = d_ham - (- model.ie.energy_average());
+	
 	if e <= 0 { // then flip
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else if 0 < e
-	    && (- e as f64 * (1.0 / tempreture)).exp() <= p {
+	    && (- e as f64 * (1.0 / model.tempreture)).exp() <= p { // noise
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else {
 	    
