@@ -32,5 +32,5 @@ pub struct Model {
     pub state: Vec<u8>,
     pub ie: Energy,
     pub tempreture: f64,
-    pub speed: i32,
+    pub update_speed: i32,
 }

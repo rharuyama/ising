@@ -28,15 +28,14 @@ fn model(_app: &App) -> Model {
 		rng.gen_range(0..2)
 	    }
 	}).collect(),
-	ie: Energy::new(0, 1, 1, 0),
-	tempreture: 20000.0,
-	speed: 50000,
+	ie: Energy::new(0, 1, 0, 0),
+	tempreture: 200000.0,
+	update_speed: 5000,
     }
 }
 
 fn update(_app: &App, model: &mut Model, _update: Update) {
-    // update view per v times loop (update speed)
-    for _a in 0..model.speed {
+    for _a in 0..model.update_speed {
 	let mut rng = rand::thread_rng();
 	let n = rng.gen_range(0..10000);
 	let d_ham = d_hamiltonian(model, n);
