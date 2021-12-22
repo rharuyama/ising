@@ -27,8 +27,8 @@ fn model(_app: &App) -> Model {
 		rng.gen_range(0..2)
 	    }
 	}).collect(),
-	ie: Energy::new(0, 1, 1, 0),
-	tempreture: 0.3, // 0.2 ~ 0.5, for example
+	ie: Energy::new(0, 0, 1, 0),
+	temperature: 0.1, // 0.2 ~ 0.5, for example
 	update_speed: 5000,
     }
 }
@@ -44,7 +44,7 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 	if e <= 0 { // then flip
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else if 0 < e
-	    && p <= (- e as f64 * (1.0 / model.tempreture)).exp() { // noise
+	    && p <= (- e as f64 * (1.0 / model.temperature)).exp() { // noise
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
 	} else {
 	    
