@@ -1,8 +1,7 @@
 mod grid;
 mod hamiltonian;
-use crate::hamiltonian::d_hamiltonian;
-use ising::Model;
-use ising::Energy;
+use hamiltonian::d_hamiltonian;
+use ising::{Model, Energy};
 use nannou::prelude::*;
 use rand::Rng;
 use std::f64;
@@ -28,9 +27,9 @@ fn model(_app: &App) -> Model {
 		rng.gen_range(0..2)
 	    }
 	}).collect(),
-	ie: Energy::new(0, 1, 0, 0),
+	ie: Energy::new(0, 2, 3, 0),
 	tempreture: 200000.0,
-	update_speed: 5000,
+	update_speed: 500,
     }
 }
 
