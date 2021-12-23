@@ -15,7 +15,7 @@ fn main() {
 fn model(_app: &App) -> Model {
     let mut rng = rand::thread_rng();
     Model {
-	weight_0_0: 0,
+	weight_0_0: 0, 
 	weight_0_1: 1,
 	weight_1_0: 1,
 	weight_1_1: 0,
@@ -29,7 +29,7 @@ fn model(_app: &App) -> Model {
 		rng.gen_range(0..2)
 	    }
 	}).collect(),
-	temperature: 0.1, // 0.2 ~ 0.5, for example
+	temperature: 0.3, // 0.2 ~ 0.5, for example
 	update_speed: 5000,
     }
 }

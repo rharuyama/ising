@@ -9,13 +9,21 @@ pub struct Model {
 }
 
 impl Model {
-    pub fn new(weight_0_0: i32, weight_0_1: i32, weight_1_0: i32, weight_1_1: i32,
-    state: Vec<u8>, temperature: f64, update_speed: i32) -> Model {
+    pub fn new(weight_0_0: i32,
+	       weight_0_1: i32,
+	       weight_1_0: i32,
+	       weight_1_1: i32,
+	       state: Vec<u8>,
+	       temperature: f64,
+	       update_speed: i32) -> Model {
+	
 	Model { weight_0_0: weight_0_0,
 		weight_0_1: weight_0_1,
 		weight_1_0: weight_1_0,
 		weight_1_1: weight_1_1,
-	state: state, temperature: temperature, update_speed: update_speed }
+		state: state,
+		temperature: temperature,
+		update_speed: update_speed }
     }
 
     pub fn interaction_energy(&self, xi: usize, xj: usize) -> i32 {
@@ -34,97 +42,64 @@ impl Model {
 	self.weight_0_0 + self.weight_0_1 + self.weight_1_0 + self.weight_1_1
     }
 
+    pub fn up(&self, n: usize) -> i32 {
+	- self.interaction_energy(
+	    n + 100,
+	    n
+	)
+    }
+	
+    pub fn down(&self, n: usize) -> i32 {
+	return 0;
+	- self.interaction_energy(
+	    n,
+	    n - 100
+	)
+    }
+	
+    pub fn left(&self, n: usize) -> i32 {
+	return 0;
+	- self.interaction_energy(
+	    n,
+	    n - 1
+	)
+    }
+	
+    pub fn right(&self, n: usize) -> i32 {
+	- self.interaction_energy(
+	    n + 1,
+	    n
+	)
+    }
+	
+
     pub fn d_hamiltonian(&self, n: usize) -> i32 {
 	if n == 9999 { // upper right corner
-	    - self.interaction_energy(
-		n,
-		n - 1
-	    ) - self.interaction_energy( 
-		n,
-		n - 100
-	    )
+	    self.down(n) + self.left(n)
+		
 	} else if n == 99 { // down right corner
-	    - self.interaction_energy(
-		n + 100,
-		n
-	    ) - self.interaction_energy(
-		n,
-		n - 1
-	    )
+	    self.up(n) + self.left(n)
+		
 	} else if n == 0 {
-	    - self.interaction_energy(
-		n + 100,
-		n
-	    ) - self.interaction_energy(
-		n + 1,
-		n
-	    )
+	    self.up(n) + self.right(n)
+		
 	} else if n == 9900 { // upper left corner
-	    - self.interaction_energy(
-		n,
-		n - 100
-	    ) - self.interaction_energy(
-		n + 1,
-		n
-	    )
+	    self.down(n) + self.right(n)
+	    
 	} else if n % 100 == 99 { // right side
-	    - self.interaction_energy(
-		n + 100,
-		n
-	    ) - self.interaction_energy(
-		n,
-		n - 1
-	    ) - self.interaction_energy(
-		n,
-		n - 100
-	    )
+	    self.up(n) + self.left(n) + self.down(n)
+		
 	} else if n / 100 == 99 { // upper side
-	    - self.interaction_energy(
-		n + 1,
-		n
-	    ) - self.interaction_energy(
-		n,
-		n - 100
-	    ) - self.interaction_energy(
-		n + 1,
-		n
-	    )
+	    self.left(n) + self.down(n) + self.right(n)
+		
 	} else if n % 100 == 0 { // left side
-	    - self.interaction_energy(
-		n + 100,
-		n
-	    ) - self.interaction_energy(
-		n + 1,
-		n
-	    ) - self.interaction_energy(
-		n,
-		n - 100
-	    )
+	    self.up(n) + self.right(n) + self.down(n)
+		
 	} else if n / 100 == 0 { // down side
-	    - self.interaction_energy(
-		n,
-		n - 1
-	    ) - self.interaction_energy(
-		n + 100,
-		n
-	    ) - self.interaction_energy(
-		n + 1,
-		n
-	    )
+	    self.left(n) + self.up(n) + self.right(n)
+		
 	} else {
-	    - self.interaction_energy(
-		n + 100,
-		n
-	    ) - self.interaction_energy(
-		n + 1,
-		n
-	    ) - self.interaction_energy(
-		n,
-		n - 1
-	    ) - self.interaction_energy(
-		n,
-		n - 100
-	    )
+	    self.up(n) + self.down(n) + self.left(n) + self.right(n)
 	}
     }
 }
