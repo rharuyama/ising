@@ -2,8 +2,8 @@
 
 Run by `cargo run --release`.
 
-## (Undirected) ising model
-![Undirected ising model](ising.png)  
+## Ising model
+![Ising model](ising.png)  
 | $x_i$ | $x_j$ | energy |
 | --- | --- | --- |
 | 0 | 0 | 0 |
@@ -11,8 +11,8 @@ Run by `cargo run --release`.
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |
 
-## Model in which directed wind blown from down left corner
-![Directed wind from down left corner model](wind.png)  
+## パラメータを変えてみた
+![change parameter](wind.png)  
 | $x_i$ | $x_j$ | energy |
 | --- | --- | --- |
 | 0 | 0 | 0 |
