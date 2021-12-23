@@ -1,6 +1,4 @@
 mod grid;
-// mod hamiltonian;
-// use hamiltonian::d_hamiltonian;
 use ising::Model;
 use nannou::prelude::*;
 use rand::Rng;
@@ -40,7 +38,7 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
     for _a in 0..model.update_speed {
 	let mut rng = rand::thread_rng();
 	let n = rng.gen_range(0..10000);
-	let d_ham = Model::d_hamiltonian(model, n);
+	let d_ham = model.d_hamiltonian(n);
 	let p: f64 = rng.gen();
 	let e = d_ham - (- model.energy_average());
 	
