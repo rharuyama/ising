@@ -11,12 +11,3 @@ Run by `cargo run --release`.
 | 1 | 0 | 1 |
 | 1 | 1 | 0 |
 
-## パラメータを変えてみた
-![change parameter](wind.png)  
-| $x_i$ | $x_j$ | energy |
-| --- | --- | --- |
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 0 |
-| 1 | 1 | 0 |
-
