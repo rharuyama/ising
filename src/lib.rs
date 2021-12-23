@@ -1,36 +1,36 @@
-pub struct Energy {
-    pub a: i32,
-    pub b: i32,
-    pub c: i32,
-    pub d: i32,
+pub struct Model {
+    pub weight_0_0: i32,
+    pub weight_0_1: i32,
+    pub weight_1_0: i32,
+    pub weight_1_1: i32,
+    pub state: Vec<u8>,
+    pub temperature: f64,
+    pub update_speed: i32,
 }
 
-impl Energy {
-    pub fn new(a: i32, b: i32, c: i32, d: i32) -> Energy {
-	Energy { a: a, b: b, c:c, d:d }
+impl Model {
+    pub fn new(weight_0_0: i32, weight_0_1: i32, weight_1_0: i32, weight_1_1: i32,
+    state: Vec<u8>, temperature: f64, update_speed: i32) -> Model {
+	Model { weight_0_0: weight_0_0,
+		weight_0_1: weight_0_1,
+		weight_1_0: weight_1_0,
+		weight_1_1: weight_1_1,
+	state: state, temperature: temperature, update_speed: update_speed }
     }
 
-    pub fn interaction_energy(&self, xi: u8, xj: u8) -> i32 {
-	if xi == 0 && xj == 0 {
-	    self.a
-	} else if xi == 0 && xj == 1 {
-	    self.b
-	} else if xi == 1 && xj == 0 {
-	    self.c
+    pub fn interaction_energy(&self, xi: usize, xj: usize) -> i32 {
+	if self.state[xi] == 0 && self.state[xj] == 0 {
+	    self.weight_0_0
+	} else if self.state[xi] == 0 && self.state[xj] == 1 {
+	    self.weight_0_1
+	} else if self.state[xi] == 1 && self.state[xj] == 0 {
+	    self.weight_1_0
 	} else {
-	    self.d
+	    self.weight_1_1
 	}
     }
 
     pub fn energy_average(&self) -> i32 {
-	self.a + self.b + self.c + self.d
+	self.weight_0_0 + self.weight_0_1 + self.weight_1_0 + self.weight_1_1
     }
-}
-
-
-pub struct Model {
-    pub state: Vec<u8>,
-    pub ie: Energy,
-    pub temperature: f64,
-    pub update_speed: i32,
 }

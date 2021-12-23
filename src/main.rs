@@ -1,7 +1,7 @@
 mod grid;
 mod hamiltonian;
 use hamiltonian::d_hamiltonian;
-use ising::{Model, Energy};
+use ising::Model;
 use nannou::prelude::*;
 use rand::Rng;
 use std::f64;
@@ -17,6 +17,10 @@ fn main() {
 fn model(_app: &App) -> Model {
     let mut rng = rand::thread_rng();
     Model {
+	weight_0_0: 0,
+	weight_0_1: 1,
+	weight_1_0: 1,
+	weight_1_1: 0,
 	state: (0..10000).map(|n| {
 	    let i = n % 100;
 	    let j = n / 100;
@@ -26,12 +30,7 @@ fn model(_app: &App) -> Model {
 		// 0
 		rng.gen_range(0..2)
 	    }
-	}).collect(),      // x_i | x_j
-	ie: Energy::new(0, //   0 |   0
-			1, //   0 |   1
-			1, //   1 |   0
-			0  //   1 |   1
-	),
+	}).collect(),
 	temperature: 0.1, // 0.2 ~ 0.5, for example
 	update_speed: 5000,
     }
@@ -43,7 +42,7 @@ fn update(_app: &App, model: &mut Model, _update: Update) {
 	let n = rng.gen_range(0..10000);
 	let d_ham = d_hamiltonian(model, n);
 	let p: f64 = rng.gen();
-	let e = d_ham - (- model.ie.energy_average());
+	let e = d_ham - (- model.energy_average());
 	
 	if e <= 0 { // then flip
 	    model.state[n] = if model.state[n] == 0 { 1 } else { 0 };
