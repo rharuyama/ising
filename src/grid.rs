@@ -14,8 +14,10 @@ pub fn grid(draw: &Draw, model: &Model) {
 
 pub fn get_color(bin: u8) -> Rgb8 {
     if bin == 0 {
+	// red
 	rgb8(201, 38, 41)
     } else {
+	// green
 	rgb8(51, 116, 59)
     }
 }
