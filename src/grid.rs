@@ -14,8 +14,8 @@ pub fn grid(draw: &Draw, model: &Model) {
 
 pub fn get_color(bin: u8) -> Rgb8 {
     if bin == 0 {
-	WHITE
+	rgb8(201, 38, 41)
     } else {
-	BLACK
+	rgb8(51, 116, 59)
     }
 }

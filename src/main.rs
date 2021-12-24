@@ -29,8 +29,8 @@ fn model(_app: &App) -> Model {
 		rng.gen_range(0..2)
 	    }
 	}).collect(),
-	temperature: 0.3, // 0.2 ~ 0.5, for example
-	update_speed: 5000,
+	temperature: 0.4, // 0.2 ~ 0.5, for example
+	update_speed: 500,
     }
 }
 
