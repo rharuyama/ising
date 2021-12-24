@@ -1,16 +1,10 @@
-# Ising model simulation by Metropolis method
+# メトロポリス法によるイジング模型のシミュレーション
 
-Run:  
+実行:  
 ```
 cargo run --release
 ```
 
-## Ising model
+## イジング模型
+上下左右のセルと同じ色になりやすい。  
 ![Ising model](images/ising.png)  
-| $x_i$ | $x_j$ | energy |
-| ----- | ----- | ------ |
-| 0 | 0 | 0 |
-| 0 | 1 | 1 |
-| 1 | 0 | 1 |
-| 1 | 1 | 0 |
-
