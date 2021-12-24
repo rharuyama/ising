@@ -50,7 +50,6 @@ impl Model {
     }
 	
     pub fn down(&self, n: usize) -> i32 {
-	return 0;
 	- self.interaction_energy(
 	    n,
 	    n - 100
@@ -58,7 +57,6 @@ impl Model {
     }
 	
     pub fn left(&self, n: usize) -> i32 {
-	return 0;
 	- self.interaction_energy(
 	    n,
 	    n - 1
