@@ -1,4 +1,4 @@
-# <span style="color:red">*HAPPY* </span> <span style="color:green">*XMAS!*</span> Ising model simulation by Metropolis method
+# Ising model simulation by Metropolis method
 
 Run:  
 ```
@@ -6,7 +6,7 @@ cargo run --release
 ```
 
 ## Ising model
-![Ising model](ising.png)  
+![Ising model](images/ising.png)  
 | $x_i$ | $x_j$ | energy |
 | ----- | ----- | ------ |
 | 0 | 0 | 0 |
